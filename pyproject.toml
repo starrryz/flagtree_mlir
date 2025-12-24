@@ -1,0 +1,74 @@
+[build-system]
+requires = [
+  "scikit-build-core",
+#   "scikit-build",
+  "wheel",
+  "cmake>=3.20",
+  "ninja",
+  "nanobind==2.4.0"
+]
+
+build-backend = "scikit_build_core.build"
+# build-backend = "setuptools.build_meta"
+
+[project]
+name = "llvm-wheel"
+version = "0.1.0"
+description = "LLVM / MLIR runtime packaged as a Python wheel"
+requires-python = ">=3.8"
+
+
+[tool.scikit-build]
+# ---whl_unpack
+#  |-llvm_wheel
+#  |--之前的bin，include等等内容
+#  |-mlir(mlir需要单独提出来，保证可以from mlir import ir)
+wheel.install-dir = "llvm_wheel"
+# on testing auto find ❌️
+wheel.packages = ["mlir"]
+
+cmake.source-dir = "."
+build-dir = "build/cm_build_scikit"
+# WARNING: Use build.verbose instead of cmake.verbose for scikit-build-core >= 0.10
+build.verbose = true
+cmake.args = [
+  "-DLLVM_ENABLE_PROJECTS=mlir;llvm;lld",
+  "-DLLVM_TARGETS_TO_BUILD=host;NVPTX;AMDGPU",
+  "-DCMAKE_BUILD_TYPE=Release",
+  "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+  "-DCMAKE_C_COMPILER=clang-16",
+  # maybe useful 实际没用，根本不会往这里安装！！！
+  # 不仅没用，而且干扰视听，定义了也会重定向，实际和{SKBUILD_PLATLIB_DIR}是一致的
+  # "-DCMAKE_INSTALL_PREFIX=/tmp/llvm-install2",
+  "-DCMAKE_CXX_COMPILER=clang++-16",
+  "-DLLVM_ENABLE_LLD=ON",
+  "-DMLIR_ENABLE_BINDINGS_PYTHON=ON"]
+
+# [tool.scikit-build.post-build]
+# # 自定义 shell 命令
+# cmds = [
+#   "mkdir -p {wheel_dir}/mlir",
+#   "cp -r /tmp/llvm-install/python_packages/mlir_core/mlir/* {wheel_dir}/mlir/"
+# ]
+
+# submodule build options
+# [tool.scikit-build.cmake.define]
+# LLVM_ENABLE_PROJECTS = "mlir;llvm;lld"
+# LLVM_TARGETS_TO_BUILD = "host;NVPTX;AMDGPU"
+# LLVM_ENABLE_LLD = "ON"
+# MLIR_ENABLE_BINDINGS_PYTHON = "ON"
+# CMAKE_BUILD_TYPE = "Release"
+# CMAKE_EXPORT_COMPILE_COMMANDS = "ON"
+# CMAKE_C_COMPILER = "clang-16"
+# CMAKE_CXX_COMPILER = "clang++-16"
+
+# build-backend = "scikit_build_core.build"
+
+# release wheels name
+# wheel.packages = ["llvm_whl"]
+
+# 需要指令install之后post处理，
+# 最后解包之后的目录应该长这样
+
+
+

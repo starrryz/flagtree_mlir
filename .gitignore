@@ -1,0 +1,11 @@
+# build artifacts
+build/
+dist/
+build_whl_now_output/
+
+# scikit-build
+_skbuild/
+
+# python
+__pycache__/
+*.egg-info/
