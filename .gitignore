@@ -9,3 +9,7 @@ _skbuild/
 # python
 __pycache__/
 *.egg-info/
+
+# workdir cache
+.hypothesis/
+.venv/
