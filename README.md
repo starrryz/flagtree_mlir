@@ -1,13 +1,13 @@
-```markdown
 # LLVM Wheel Build Guide
 
 This document describes how to build a wheel package from a specific version of llvm-project.
 
 ## Quick Start
 
-### 1. Clone the repository
+### 1. Clone the repository and build clang
 ```bash
 git clone https://github.com/starrryz/llvm-wheel.git
+apt install clang-16
 ```
 
 > **Note**: No need to download submodule and `git clone --recursive` unless your version is the same as ours.
