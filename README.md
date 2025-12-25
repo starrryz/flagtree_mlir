@@ -34,7 +34,7 @@ python -c "from mlir import ir"
 
 No error is expected.
 
-## Project Structure
+## wheel Structure
 
 Unzip the wheel package, the content is as below:
 
@@ -70,8 +70,6 @@ cmake -G Ninja -B build -S llvm \
     -DMLIR_ENABLE_BINDINGS_PYTHON=ON
 ```
 
-## Customization
-
-You can change the content of `pyproject.toml` to follow your favor.
+> **Customization**: You can change the content of `pyproject.toml` to follow your favor.
 
 
