@@ -1,4 +1,4 @@
-# LLVM Wheel Build Guide
+# FLAGTREE-MLIR Build Guide
 
 This document describes how to build a wheel package from a specific version of llvm-project.
 
@@ -6,8 +6,8 @@ This document describes how to build a wheel package from a specific version of 
 
 ### 1. Clone the repository and build clang
 ```bash
-git clone https://github.com/starrryz/llvm-wheel.git
-apt install clang-16
+git clone https://github.com/starrryz/flagtree-mlir.git
+apt install clang
 ```
 
 > **Note**: No need to download submodule and `git clone --recursive` unless your version is the same as ours.
@@ -15,7 +15,7 @@ apt install clang-16
 ### 2. Build the Wheel
 
 ```bash
-cd llvm-wheel
+cd flagtree-mlir
 python -m build -w
 ```
 
@@ -25,10 +25,10 @@ After building, the `.whl` file will appear in the `./dist` directory.
 
 ```bash
 # Install the wheel package (adjust the filename according to the actual one)
-pip install ./dist/llvm_wheel-0.1.0-cp312-cp312-linux_x86_64.whl --force-reinstall
+pip install ./dist/flagtree_mlir-0.1.0-cp312-cp312-linux_x86_64.whl --force-reinstall
 
 # Test import
-python -c "import llvm_wheel"
+python -c "import flagtree_mlir"
 python -c "from mlir import ir"
 ```
 
@@ -39,14 +39,14 @@ No error is expected.
 Unzip the wheel package, the content is as below:
 
 ```
-├── llvm_wheel
+├── flagtree_mlir
 │   ├── bin
 │   ├── include
 │   ├── lib
 │   ├── python_packages
 │   ├── share
 │   └── src
-├── llvm_wheel-0.1.0.dist-info
+├── flagtree_mlir-0.1.0.dist-info
 └── mlir
     ├── _mlir_libs
     ├── dialects
