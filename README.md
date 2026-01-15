@@ -6,7 +6,7 @@ This document describes how to build a wheel package from a specific version of 
 
 ### 1. Clone the repository and build clang
 ```bash
-git clone https://github.com/starrryz/flagtree-mlir.git
+git clone https://github.com/flagos-ai/flagtree-mlir.git
 apt install clang
 ```
 
