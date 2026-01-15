@@ -9,14 +9,14 @@ requires = [
 build-backend = "scikit_build_core.build"
 
 [project]
-name = "llvm-wheel"
+name = "flagtree-mlir"
 version = "0.1.0"
 description = "LLVM / MLIR runtime packaged as a Python wheel"
 requires-python = ">=3.8"
 
 
 [tool.scikit-build]
-wheel.install-dir = "llvm_wheel"
+wheel.install-dir = "flagtree_mlir"
 
 cmake.source-dir = "."
 build-dir = "build/cm_build_scikit"
